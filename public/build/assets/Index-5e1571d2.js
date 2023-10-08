@@ -1,0 +1,1 @@
+import{_ as e}from"./AppLayout-fe0309f7.js";import{o as t,c as a,w as o,a as s}from"./app-4c626152.js";import"./_plugin-vue_export-helper-c27b6911.js";const n=s("h2",{class:"font-semibold text-xl text-gray-800 leading-tight"}," Index Plan ",-1),m={__name:"Index",setup(r){return(_,c)=>(t(),a(e,{title:"Index Plan"},{header:o(()=>[n]),_:1}))}};export{m as default};
