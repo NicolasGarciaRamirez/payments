@@ -1,1 +1,0 @@
-import{_ as t}from"./AppLayout-fe0309f7.js";import{o as e,c as a,w as r,a as o}from"./app-4c626152.js";import"./_plugin-vue_export-helper-c27b6911.js";const s=o("h2",{class:"font-semibold text-xl text-gray-800 leading-tight"}," Create Product ",-1),l={__name:"Create",setup(c){return(_,i)=>(e(),a(t,{title:"Create Product"},{header:r(()=>[s]),_:1}))}};export{l as default};

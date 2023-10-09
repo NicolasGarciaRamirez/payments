@@ -1,1 +1,0 @@
-import{_ as e}from"./AppLayout-fe0309f7.js";import{o as t,c as a,w as r,a as o}from"./app-4c626152.js";import"./_plugin-vue_export-helper-c27b6911.js";const s=o("h2",{class:"font-semibold text-xl text-gray-800 leading-tight"}," Create Categories ",-1),p={__name:"Create",setup(_){return(c,i)=>(t(),a(e,{title:"Create Categories"},{header:r(()=>[s]),_:1}))}};export{p as default};

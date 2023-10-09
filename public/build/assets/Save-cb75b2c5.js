@@ -1,1 +1,0 @@
-import{_ as e}from"./AppLayout-fe0309f7.js";import{o as t,c as a,w as o,a as r}from"./app-4c626152.js";import"./_plugin-vue_export-helper-c27b6911.js";const s=r("h2",{class:"font-semibold text-xl text-gray-800 leading-tight"}," Save Service ",-1),p={__name:"Save",setup(c){return(_,i)=>(t(),a(e,{title:"Save Service"},{header:o(()=>[s]),_:1}))}};export{p as default};

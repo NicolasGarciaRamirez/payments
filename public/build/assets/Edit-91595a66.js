@@ -1,1 +1,0 @@
-import{_ as t}from"./AppLayout-fe0309f7.js";import{o as e,c as a,w as o,a as r}from"./app-4c626152.js";import"./_plugin-vue_export-helper-c27b6911.js";const s=r("h2",{class:"font-semibold text-xl text-gray-800 leading-tight"}," Edit Service ",-1),l={__name:"Edit",setup(i){return(c,_)=>(e(),a(t,{title:"Edit Service"},{header:o(()=>[s]),_:1}))}};export{l as default};

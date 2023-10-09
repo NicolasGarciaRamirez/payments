@@ -1,0 +1,1 @@
+import{_ as e}from"./AppLayout-fbf7b3cc.js";import{o as t,c as a,w as r,a as o}from"./app-e18de00d.js";import"./_plugin-vue_export-helper-c27b6911.js";const s=o("h2",{class:"font-semibold text-xl text-gray-800 leading-tight"}," Create Plan ",-1),p={__name:"Create",setup(_){return(c,n)=>(t(),a(e,{title:"Create Plan"},{header:r(()=>[s]),_:1}))}};export{p as default};
