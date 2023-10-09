@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->string('name');
 			$table->string('description');
 			$table->bigInteger('price');
-			$table->string('time');
+			$table->string('frequency');
             $table->timestamps();
 			$table->softDeletes();
         });

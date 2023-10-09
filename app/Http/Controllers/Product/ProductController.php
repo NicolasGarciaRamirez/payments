@@ -44,14 +44,11 @@ class ProductController extends Controller
             ],
         ]);
 
-        $imagePath = $request->file('image')->store('products', 'public');
-
-        Product::create([
+        $product = Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
             'stock' => $request->input('stock'),
-            'image' => $imagePath,
             'user_id' => auth()->id(), // Opcional: Asigna el ID del usuario actual
             'category_id' => $request->input('category_id'),
         ]);
@@ -89,19 +86,11 @@ class ProductController extends Controller
             ],
         ]);
 
-        if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($product->image); // Elimina la imagen anterior
-            $imagePath = $request->file('image')->store('products', 'public');
-        } else {
-            $imagePath = $product->image; // Conserva la imagen anterior si no se actualiza
-        }
-
         $product->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
             'stock' => $request->input('stock'),
-            'image' => $imagePath,
             'category_id' => $request->input('category_id'),
         ]);
 
@@ -110,7 +99,6 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        Storage::disk('public')->delete($product->image); // Elimina la imagen asociada al producto
         $product->delete();
 
         return redirect()->route('products.index');

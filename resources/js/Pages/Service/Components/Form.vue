@@ -9,10 +9,12 @@ import TextInput from '@/Components/TextInput.vue';
 
 const createServiceForm = useForm({
     name: '',
-    permissions: props.defaultPermissions,
+	price: '',
+	description: '',
+	time: ''
 });
 const createService = () => {
-    createServiceForm.post(route('plans.store'), {
+    createServiceForm.post(route('Services.store'), {
         preserveScroll: true,
         onSuccess: () => {
             displayingToken.value = true;
@@ -24,11 +26,11 @@ const createService = () => {
 <template>
 	<FormSection @submitted="createService">
 		<template #title>
-			Create Plan
+			Create Service
 		</template>
 
 		<template #description>
-			Crea todos los planes con el tiempo de frecuencia preestablecido
+			Crea todos los servicios con el tiempo de frecuencia preestablecido
 		</template>
 
 		<template #form>
@@ -40,7 +42,6 @@ const createService = () => {
 					v-model="createServiceForm.name"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createServiceForm.errors.name" class="mt-2" />
 			</div>
@@ -52,7 +53,6 @@ const createService = () => {
 					v-model="createServiceForm.price"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createServiceForm.errors.price" class="mt-2" />
 			</div>
@@ -64,21 +64,8 @@ const createService = () => {
 					v-model="createServiceForm.description"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createServiceForm.errors.description" class="mt-2" />
-			</div>
-
-			<div class="col-span-6 sm:col-span-4">
-				<InputLabel for="time" value="time" />
-				<TextInput
-					id="time"
-					v-model="createServiceForm.time"
-					type="text"
-					class="mt-1 block w-full"
-					autofocus
-				/>
-				<InputError :message="createServiceForm.errors.time" class="mt-2" />
 			</div>
 		</template>
 

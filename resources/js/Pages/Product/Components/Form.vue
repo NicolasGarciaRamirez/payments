@@ -9,10 +9,12 @@ import TextInput from '@/Components/TextInput.vue';
 
 const createProductForm = useForm({
     name: '',
-    permissions: props.defaultPermissions,
+	price: '',
+	description: ''
 });
+
 const createProduct = () => {
-    createProductForm.post(route('products.store'), {
+    createProductForm.post(route('Products.store'), {
         preserveScroll: true,
         onSuccess: () => {
             displayingToken.value = true;
@@ -24,11 +26,11 @@ const createProduct = () => {
 <template>
 	<FormSection @submitted="createProduct">
 		<template #title>
-			Create Plan
+			Create Product
 		</template>
 
 		<template #description>
-			Crea todos los planes con el tiempo de frecuencia preestablecido
+			Crea todos los productos
 		</template>
 
 		<template #form>
@@ -40,7 +42,6 @@ const createProduct = () => {
 					v-model="createProductForm.name"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createProductForm.errors.name" class="mt-2" />
 			</div>
@@ -52,7 +53,6 @@ const createProduct = () => {
 					v-model="createProductForm.price"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createProductForm.errors.price" class="mt-2" />
 			</div>
@@ -64,21 +64,8 @@ const createProduct = () => {
 					v-model="createProductForm.description"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createProductForm.errors.description" class="mt-2" />
-			</div>
-
-			<div class="col-span-6 sm:col-span-4">
-				<InputLabel for="time" value="time" />
-				<TextInput
-					id="time"
-					v-model="createProductForm.time"
-					type="text"
-					class="mt-1 block w-full"
-					autofocus
-				/>
-				<InputError :message="createProductForm.errors.time" class="mt-2" />
 			</div>
 		</template>
 

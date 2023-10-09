@@ -32,8 +32,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     Route::get('/dashboard', function () {
-
-        return Inertia::render('Dashboard', ['products' => Product::all()]);
+        return Inertia::render('Dashboard');
     })->name('dashboard');
 
 	Route::resource('/Products', ProductController::class);

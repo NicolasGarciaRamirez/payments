@@ -8,11 +8,13 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
 const createPlanForm = useForm({
-    name: '',
-    permissions: props.defaultPermissions,
+	name: '',
+	price: '',
+	description: '',
+	frequency: ''
 });
 const createPlan = () => {
-    createPlanForm.post(route('plans.store'), {
+    createPlanForm.post(route('Plans.store'), {
         preserveScroll: true,
         onSuccess: () => {
             displayingToken.value = true;
@@ -40,7 +42,6 @@ const createPlan = () => {
 					v-model="createPlanForm.name"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createPlanForm.errors.name" class="mt-2" />
 			</div>
@@ -52,7 +53,6 @@ const createPlan = () => {
 					v-model="createPlanForm.price"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createPlanForm.errors.price" class="mt-2" />
 			</div>
@@ -64,20 +64,16 @@ const createPlan = () => {
 					v-model="createPlanForm.description"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createPlanForm.errors.description" class="mt-2" />
 			</div>
 
 			<div class="col-span-6 sm:col-span-4">
 				<InputLabel for="time" value="time" />
-				<TextInput
-					id="time"
-					v-model="createPlanForm.time"
-					type="text"
-					class="mt-1 block w-full"
-					autofocus
-				/>
+				<select v-model="createPlanForm.time">
+					<option value="Month">Month</option>
+					<option value="Year">Year</option>
+				</select>
 				<InputError :message="createPlanForm.errors.time" class="mt-2" />
 			</div>
 		</template>

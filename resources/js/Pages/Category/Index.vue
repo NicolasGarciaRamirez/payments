@@ -9,6 +9,6 @@ import Form from './Components/Form.vue';
                 Index Categories
             </h2>
         </template>
-		<Form></Form>
+		<Form class="p-4"></Form>
 	</AppLayout>
 </template>

@@ -11,7 +11,7 @@ class Plan extends Model
 {
     use HasFactory, SoftDeletes;
 
-	protected $fillable = ['name','description','price','time'];
+	protected $fillable = ['name','description','price','frequency'];
 
 	protected $hidden = ['created_at','updated_at','deleted_at'];
 

@@ -9,6 +9,7 @@ import Form from './Components/Form.vue';
                 Index Plan
             </h2>
         </template>
-		<Form></Form>
+		
+		<Form class="p-4" :plans="plans"></Form>
 	</AppLayout>
 </template>

@@ -18,7 +18,6 @@ class PlanController extends Controller
     }
 	public function index()
     {
-
         $plans = Plan::all();
 
         return Inertia::render('Plan/Index', [
@@ -37,6 +36,7 @@ class PlanController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
+			'frequency' => 'required|string'
         ]);
 		$data = [
             'name' => $request->input('name'),
@@ -47,7 +47,7 @@ class PlanController extends Controller
 
         $plan = Plan::create($data);
 		$responsePlanNicoPay = $this->sdk->createPlan($data);
-        return redirect()->route('plans.index');
+        return redirect()->route('Plans.index');
     }
 
     public function show(Plan $plan)
@@ -78,13 +78,13 @@ class PlanController extends Controller
             'price' => $request->input('price'),
         ]);
 
-        return redirect()->route('plans.index');
+        return redirect()->route('Plans.index');
     }
 
     public function destroy(Plan $plan)
     {
         $plan->delete();
 
-        return redirect()->route('plans.index');
+        return redirect()->route('Plans.index');
     }
 }

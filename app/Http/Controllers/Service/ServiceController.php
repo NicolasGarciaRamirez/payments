@@ -6,9 +6,16 @@ use Inertia\Inertia;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\SdkNicoPay\Main\NicoPay;
 
 class ServiceController extends Controller
 {
+	public $sdk;
+
+	public function __construct()
+    {
+        $this->sdk = new NicoPay(env('NICO_PAY_API_KEY'));
+    }
     public function index()
     {
         $services = Service::all();
@@ -30,14 +37,13 @@ class ServiceController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
         ]);
-
-        Service::create([
+		$data = [
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
-        ]);
-
-        return redirect()->route('services.index');
+        ];
+        $service = Service::create($data);
+        return redirect()->route('Services.index');
     }
 
     public function show(Service $service)
@@ -68,13 +74,13 @@ class ServiceController extends Controller
             'price' => $request->input('price'),
         ]);
 
-        return redirect()->route('services.index');
+        return redirect()->route('Services.index');
     }
 
     public function destroy(Service $service)
     {
         $service->delete();
 
-        return redirect()->route('services.index');
+        return redirect()->route('Services.index');
     }
 }

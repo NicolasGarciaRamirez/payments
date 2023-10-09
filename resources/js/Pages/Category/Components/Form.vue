@@ -9,10 +9,10 @@ import TextInput from '@/Components/TextInput.vue';
 
 const createCategoryForm = useForm({
     name: '',
-    permissions: props.defaultPermissions,
+    description: ''
 });
 const createCategory = () => {
-    createCategoryForm.post(route('category.store'), {
+    createCategoryForm.post(route('Categories.store'), {
         preserveScroll: true,
         onSuccess: () => {
             displayingToken.value = true;
@@ -37,22 +37,20 @@ const createCategory = () => {
 				<InputLabel for="name" value="Name" />
 				<TextInput
 					id="name"
-					v-model="createPlanForm.name"
+					v-model="createCategoryForm.name"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
-				<InputError :message="createPlanForm.errors.name" class="mt-2" />
+				<InputError :message="createCategoryForm.errors.name" class="mt-2" />
 			</div>
 
 			<div class="col-span-6 sm:col-span-4">
 				<InputLabel for="description" value="description" />
 				<TextInput
 					id="description"
-					v-model="createPlanForm.description"
+					v-model="createCategoryForm.description"
 					type="text"
 					class="mt-1 block w-full"
-					autofocus
 				/>
 				<InputError :message="createCategoryForm.errors.description" class="mt-2" />
 			</div>

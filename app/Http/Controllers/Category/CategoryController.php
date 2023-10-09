@@ -28,7 +28,7 @@ class CategoryController extends Controller
         // Valida y guarda el registro en la base de datos
         // ...
 
-        return redirect()->route('categories.index');
+		return Inertia::render('Category/Index');
     }
 
     public function show(Category $category)
@@ -50,7 +50,7 @@ class CategoryController extends Controller
         // Valida y actualiza el registro en la base de datos
         // ...
 
-        return redirect()->route('categories.index');
+        return redirect()->route('Categories.index');
     }
 
     public function destroy(Category $category)
@@ -58,6 +58,6 @@ class CategoryController extends Controller
         // Elimina el registro de la base de datos
         // ...
 
-        return redirect()->route('categories.index');
+        return redirect()->route('Categories.index');
     }
 }
