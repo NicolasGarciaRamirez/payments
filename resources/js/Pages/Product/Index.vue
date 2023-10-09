@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
+import Form from './Components/Form.vue';
 </script>
 <template>
 	<AppLayout title="Index Product">
@@ -8,5 +9,6 @@ import AppLayout from '@/Layouts/AppLayout.vue'
                 Index Products
             </h2>
         </template>
+		<Form></Form>
 	</AppLayout>
 </template>

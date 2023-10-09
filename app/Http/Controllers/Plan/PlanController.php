@@ -5,16 +5,24 @@ namespace App\Http\Controllers\Plan;
 use App\Models\Plan;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\SdkNicoPay\Main\NicoPay;
 use App\Http\Controllers\Controller;
 
 class PlanController extends Controller
 {
+	public $sdk;
+
+	public function __construct()
+    {
+        $this->sdk = new NicoPay(env('NICO_PAY_API_KEY'));
+    }
 	public function index()
     {
+
         $plans = Plan::all();
 
         return Inertia::render('Plan/Index', [
-            'plans' => $plans,
+            'plans' => $plans
         ]);
     }
 
@@ -30,13 +38,15 @@ class PlanController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
         ]);
-
-        Plan::create([
+		$data = [
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
-        ]);
+			'frequency' => $request->input('frequency')
+        ];
 
+        $plan = Plan::create($data);
+		$responsePlanNicoPay = $this->sdk->createPlan($data);
         return redirect()->route('plans.index');
     }
 

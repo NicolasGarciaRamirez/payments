@@ -1,12 +1,71 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue'
+import { useForm } from '@inertiajs/vue3';
+import ActionMessage from '@/Components/ActionMessage.vue';
+import FormSection from '@/Components/FormSection.vue';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+
+const createCategoryForm = useForm({
+    name: '',
+    permissions: props.defaultPermissions,
+});
+const createCategory = () => {
+    createCategoryForm.post(route('category.store'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            displayingToken.value = true;
+            createCategoryForm.reset();
+        },
+    });
+};
 </script>
 <template>
-	<AppLayout title="Index Categories">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Index Categories
-            </h2>
-        </template>
-	</AppLayout>
+	<FormSection @submitted="createCategory">
+		<template #title>
+			Create category
+		</template>
+
+		<template #description>
+			Crea todas las categorias que desees para tus productos
+		</template>
+
+		<template #form>
+			<!-- Token Name -->
+			<div class="col-span-6 sm:col-span-4">
+				<InputLabel for="name" value="Name" />
+				<TextInput
+					id="name"
+					v-model="createPlanForm.name"
+					type="text"
+					class="mt-1 block w-full"
+					autofocus
+				/>
+				<InputError :message="createPlanForm.errors.name" class="mt-2" />
+			</div>
+
+			<div class="col-span-6 sm:col-span-4">
+				<InputLabel for="description" value="description" />
+				<TextInput
+					id="description"
+					v-model="createPlanForm.description"
+					type="text"
+					class="mt-1 block w-full"
+					autofocus
+				/>
+				<InputError :message="createCategoryForm.errors.description" class="mt-2" />
+			</div>
+		</template>
+
+		<template #actions>
+			<ActionMessage :on="createCategoryForm.recentlySuccessful" class="mr-3">
+				Created.
+			</ActionMessage>
+
+			<PrimaryButton :class="{ 'opacity-25': createCategoryForm.processing }" :disabled="createCategoryForm.processing">
+				Create
+			</PrimaryButton>
+		</template>
+	</FormSection>
 </template>

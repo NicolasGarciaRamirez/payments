@@ -7,26 +7,28 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
-const createProductForm = useForm({
+const createServiceForm = useForm({
     name: '',
     permissions: props.defaultPermissions,
 });
-const createApiToken = () => {
-    createProductForm.post(route('products.store'), {
+const createService = () => {
+    createServiceForm.post(route('plans.store'), {
         preserveScroll: true,
         onSuccess: () => {
             displayingToken.value = true;
-            createProductForm.reset();
+            createServiceForm.reset();
         },
     });
 };
 </script>
 <template>
-	<FormSection @submitted="createApiToken">
+	<FormSection @submitted="createService">
 		<template #title>
+			Create Plan
 		</template>
 
 		<template #description>
+			Crea todos los planes con el tiempo de frecuencia preestablecido
 		</template>
 
 		<template #form>
@@ -35,21 +37,57 @@ const createApiToken = () => {
 				<InputLabel for="name" value="Name" />
 				<TextInput
 					id="name"
-					v-model="createApiTokenForm.name"
+					v-model="createServiceForm.name"
 					type="text"
 					class="mt-1 block w-full"
 					autofocus
 				/>
-				<InputError :message="createApiTokenForm.errors.name" class="mt-2" />
+				<InputError :message="createServiceForm.errors.name" class="mt-2" />
+			</div>
+
+			<div class="col-span-6 sm:col-span-4">
+				<InputLabel for="Price" value="Price" />
+				<TextInput
+					id="price"
+					v-model="createServiceForm.price"
+					type="text"
+					class="mt-1 block w-full"
+					autofocus
+				/>
+				<InputError :message="createServiceForm.errors.price" class="mt-2" />
+			</div>
+
+			<div class="col-span-6 sm:col-span-4">
+				<InputLabel for="description" value="Description" />
+				<TextInput
+					id="description"
+					v-model="createServiceForm.description"
+					type="text"
+					class="mt-1 block w-full"
+					autofocus
+				/>
+				<InputError :message="createServiceForm.errors.description" class="mt-2" />
+			</div>
+
+			<div class="col-span-6 sm:col-span-4">
+				<InputLabel for="time" value="time" />
+				<TextInput
+					id="time"
+					v-model="createServiceForm.time"
+					type="text"
+					class="mt-1 block w-full"
+					autofocus
+				/>
+				<InputError :message="createServiceForm.errors.time" class="mt-2" />
 			</div>
 		</template>
 
 		<template #actions>
-			<ActionMessage :on="createApiTokenForm.recentlySuccessful" class="mr-3">
+			<ActionMessage :on="createServiceForm.recentlySuccessful" class="mr-3">
 				Created.
 			</ActionMessage>
 
-			<PrimaryButton :class="{ 'opacity-25': createApiTokenForm.processing }" :disabled="createApiTokenForm.processing">
+			<PrimaryButton :class="{ 'opacity-25': createServiceForm.processing }" :disabled="createServiceForm.processing">
 				Create
 			</PrimaryButton>
 		</template>

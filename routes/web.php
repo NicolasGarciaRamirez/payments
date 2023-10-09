@@ -8,6 +8,7 @@ use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Models\Product;
+use App\Services\NicoPayService;
 
 /*
 |--------------------------------------------------------------------------
