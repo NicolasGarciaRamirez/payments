@@ -1,4 +1,6 @@
 <script setup>
+import Swal from 'sweetalert2'
+
 defineProps({
 	categories:Array,
 	plans:Array,
@@ -12,6 +14,7 @@ const addToCart = (newItem) => {
 	currentCart.items.push(newItem);
 	// Guardo el carrito actualizado en local
 	localStorage.setItem('cart', JSON.stringify(currentCart));
+	Swal.fire('Success', 'Se ha agregado correctamente el producto al carrito', 'success')
 }
 </script>
 <template>

@@ -1,8 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
-import Form from './Components/Form.vue';
-import TablePlan from './Components/TablePlan.vue'
-
+import TablePlan from './Components/Table.vue'
+import Nav from './Components/Nav.vue'
 defineProps({
 	plans: Array
 })
@@ -14,8 +13,9 @@ defineProps({
                 Index Plan
             </h2>
         </template>
-		
-		<Form class="p-4"></Form>
-		<TablePlan class="p-4" :plans="plans"></TablePlan>
+		<section class="container">
+			<Nav></Nav>
+			<TablePlan class="p-4" :plans="plans"></TablePlan>
+		</section>
 	</AppLayout>
 </template>

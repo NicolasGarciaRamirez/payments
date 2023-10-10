@@ -8,12 +8,13 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import ShoppingCardIcon from '../Components/ShoppingCardIcon.vue';
+import ShoppingCard from '../Pages/ShoppingCard/ShoppingCard.vue';
 defineProps({
     title: String,
 });
-
+const showModal = ref(false);
 const showingNavigationDropdown = ref(false);
-const totalItemsCart = ref(0)
+const totalItemsCart = ref(JSON.parse(localStorage.getItem('cart')))
 const switchToTeam = (team) => {
     router.put(route('current-team.update'), {
         team_id: team.id,
@@ -26,9 +27,6 @@ const logout = () => {
     router.post(route('logout'));
 };
 
-onMounted(()=>{
-	totalItemsCart.value = JSON.parse(localStorage.getItem('cart'))
-})
 </script>
 
 <template>
@@ -75,8 +73,9 @@ onMounted(()=>{
 
 								<div class="flex items-center space-x-4">
 									<!-- Icono de carrito de compras -->
-									<ShoppingCardIcon class="h-5 w-5 text-gray-400"></ShoppingCardIcon>
-									<span class="text-xl">{{ totalItemsCart }}</span> 
+									<ShoppingCardIcon class="h-5 w-5 text-gray-400" @click="showModal = !showModal"></ShoppingCardIcon>
+									<ShoppingCard :showModal="showModal"></ShoppingCard>
+									<!-- <span class="text-xl">{{ totalItemsCart.length +1 }}</span>  -->
 									<!-- Cantidad de productos en el carrito -->
 								</div>
                                 <!-- Teams Dropdown -->
