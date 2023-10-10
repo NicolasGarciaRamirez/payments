@@ -8,5 +8,7 @@ import AppLayout from '@/Layouts/AppLayout.vue'
                 Edit Service
             </h2>
         </template>
+		
+		<Form></Form>
 	</AppLayout>
 </template>

@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
-import Form from './Components/Form.vue';
+import Table from './Components/Table.vue';
+import Nav from './Components/nav.vue';
 </script>
 <template>
 	<AppLayout title="Index Service">
@@ -9,6 +10,9 @@ import Form from './Components/Form.vue';
                 Index Service
             </h2>
         </template>
-		<Form class="p-4"></Form>
+		<section class="container">
+			<Nav></Nav>
+			<Table></Table>
+		</section>
 	</AppLayout>
 </template>

@@ -1,6 +1,12 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
-import Form from './Components/Form.vue';
+import Table from './Components/Table.vue';
+import Nav from './Components/Nav.vue';
+
+defineProps({
+	products:Array
+})
+
 </script>
 <template>
 	<AppLayout title="Index Product">
@@ -9,6 +15,9 @@ import Form from './Components/Form.vue';
                 Index Products
             </h2>
         </template>
-		<Form class="p-4"></Form>
+		<section class="p-4">
+			<Nav />
+			<Table :products="products"></Table>
+		</section>
 	</AppLayout>
 </template>

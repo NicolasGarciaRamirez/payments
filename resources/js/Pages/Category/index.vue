@@ -1,5 +1,10 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
+import Table from './Components/Table.vue';
+import Nav from '../Service/Components/nav.vue';
+defineProps({
+	categories:Array
+})
 </script>
 <template>
 	<AppLayout title="Categories">
@@ -8,5 +13,9 @@ import AppLayout from '@/Layouts/AppLayout.vue'
                 Categories
             </h2>
         </template>
+		<section>
+			<Nav></Nav>
+			<Table :categories="categories"></Table>
+		</section>
 	</AppLayout>
 </template>

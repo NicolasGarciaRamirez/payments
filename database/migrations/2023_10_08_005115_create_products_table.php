@@ -19,8 +19,8 @@ return new class extends Migration
 			$table->text('description');
 			$table->bigInteger('price');
 			$table->bigInteger('stock');
-			$table->foreignId('user_id');
-			$table->foreignId('category_id');
+			$table->string('image');
+			$table->foreignId('category_id')->nullable();
             $table->timestamps();
 			$table->softDeletes();
         });

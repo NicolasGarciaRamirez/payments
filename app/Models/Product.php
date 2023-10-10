@@ -12,14 +12,9 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
-	protected $fillable = ['name', 'description', 'price', 'stock', 'user_id', 'category_id'];
+	protected $fillable = ['name', 'description', 'price', 'stock', 'image', 'category_id'];
 
 	protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
-
-	public function user()
-	{
-		return $this->belongsTo(User::class);
-	}
 
 	public function category()
 	{

@@ -8,5 +8,6 @@ import AppLayout from '@/Layouts/AppLayout.vue'
                 Save Service
             </h2>
         </template>
+		<Form></Form>
 	</AppLayout>
 </template>

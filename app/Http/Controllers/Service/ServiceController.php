@@ -36,13 +36,19 @@ class ServiceController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
+			'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+		if ($request->hasFile('image')) {
+			$imagePath = $request->file('image')->store('products', 'public');
+		}
 		$data = [
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
+			'image' => $request->input('image')
         ];
-        $service = Service::create($data);
+        Service::create($data);
+
         return redirect()->route('Services.index');
     }
 
@@ -66,12 +72,14 @@ class ServiceController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
+			'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $service->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
+			
         ]);
 
         return redirect()->route('Services.index');

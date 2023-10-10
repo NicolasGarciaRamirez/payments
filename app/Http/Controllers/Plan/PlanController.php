@@ -46,7 +46,6 @@ class PlanController extends Controller
         ];
 
         $plan = Plan::create($data);
-		$responsePlanNicoPay = $this->sdk->createPlan($data);
         return redirect()->route('Plans.index');
     }
 

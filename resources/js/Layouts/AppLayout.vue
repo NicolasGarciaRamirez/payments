@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
@@ -7,13 +7,13 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-
+import ShoppingCardIcon from '../Components/ShoppingCardIcon.vue';
 defineProps({
     title: String,
 });
 
 const showingNavigationDropdown = ref(false);
-
+const totalItemsCart = ref(0)
 const switchToTeam = (team) => {
     router.put(route('current-team.update'), {
         team_id: team.id,
@@ -25,6 +25,10 @@ const switchToTeam = (team) => {
 const logout = () => {
     router.post(route('logout'));
 };
+
+onMounted(()=>{
+	totalItemsCart.value = JSON.parse(localStorage.getItem('cart'))
+})
 </script>
 
 <template>
@@ -68,6 +72,13 @@ const logout = () => {
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <div class="ml-3 relative">
+
+								<div class="flex items-center space-x-4">
+									<!-- Icono de carrito de compras -->
+									<ShoppingCardIcon class="h-5 w-5 text-gray-400"></ShoppingCardIcon>
+									<span class="text-xl">{{ totalItemsCart }}</span> 
+									<!-- Cantidad de productos en el carrito -->
+								</div>
                                 <!-- Teams Dropdown -->
                                 <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
                                     <template #trigger>

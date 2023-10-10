@@ -7,10 +7,15 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
+
+defineProps({
+	categories: Array
+})
+
 const createCategoryForm = useForm({
-    name: '',
-    description: ''
+    name: ''
 });
+
 const createCategory = () => {
     createCategoryForm.post(route('Categories.store'), {
         preserveScroll: true,
@@ -42,17 +47,6 @@ const createCategory = () => {
 					class="mt-1 block w-full"
 				/>
 				<InputError :message="createCategoryForm.errors.name" class="mt-2" />
-			</div>
-
-			<div class="col-span-6 sm:col-span-4">
-				<InputLabel for="description" value="description" />
-				<TextInput
-					id="description"
-					v-model="createCategoryForm.description"
-					type="text"
-					class="mt-1 block w-full"
-				/>
-				<InputError :message="createCategoryForm.errors.description" class="mt-2" />
 			</div>
 		</template>
 

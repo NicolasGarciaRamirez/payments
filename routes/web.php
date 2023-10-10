@@ -7,8 +7,9 @@ use App\Http\Controllers\Plan\PlanController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\Category\CategoryController;
-use App\Models\Product;
-use App\Services\NicoPayService;
+use App\Models\Category;
+use App\Models\Plan;
+use App\Models\Service;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Services\NicoPayService;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('Dashboard', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -32,7 +33,11 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard' , [
+			'categories' => Category::with('products')->get(),
+			'plans' => Plan::get(),
+			'services' => Service::get()
+		]);
     })->name('dashboard');
 
 	Route::resource('/Products', ProductController::class);

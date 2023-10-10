@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-	plans:[]
+	plans:Array
 })
 </script>
 <template>

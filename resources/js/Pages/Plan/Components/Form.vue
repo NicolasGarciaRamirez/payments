@@ -69,12 +69,12 @@ const createPlan = () => {
 			</div>
 
 			<div class="col-span-6 sm:col-span-4">
-				<InputLabel for="time" value="time" />
-				<select v-model="createPlanForm.time">
+				<InputLabel for="frequency" value="frequency" />
+				<select v-model="createPlanForm.frequency">
 					<option value="Month">Month</option>
 					<option value="Year">Year</option>
 				</select>
-				<InputError :message="createPlanForm.errors.time" class="mt-2" />
+				<InputError :message="createPlanForm.errors.frequency" class="mt-2" />
 			</div>
 		</template>
 

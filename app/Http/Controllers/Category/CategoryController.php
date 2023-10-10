@@ -27,6 +27,9 @@ class CategoryController extends Controller
     {
         // Valida y guarda el registro en la base de datos
         // ...
+		Category::create([
+			"name" => $request->input("name"),
+		]);
 
 		return Inertia::render('Category/Index');
     }

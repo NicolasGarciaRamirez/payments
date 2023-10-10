@@ -1,6 +1,10 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import Form from './Components/Form.vue';
+
+defineProps({
+	categories: Array
+})
 </script>
 <template>
 	<AppLayout title="Index Categories">
@@ -9,6 +13,6 @@ import Form from './Components/Form.vue';
                 Index Categories
             </h2>
         </template>
-		<Form class="p-4"></Form>
+		<Form class="p-4" :categories="categories"></Form>
 	</AppLayout>
 </template>

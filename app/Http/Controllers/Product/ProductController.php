@@ -44,16 +44,20 @@ class ProductController extends Controller
             ],
         ]);
 
-        $product = Product::create([
+		if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->move(public_path('products'));
+		}
+
+        Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
             'stock' => $request->input('stock'),
-            'user_id' => auth()->id(), // Opcional: Asigna el ID del usuario actual
+			'image' => $imagePath,
             'category_id' => $request->input('category_id'),
         ]);
 
-        return redirect()->route('products.index');
+        return redirect()->route('Products.index');
     }
 
     public function show(Product $product)
@@ -80,27 +84,37 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
+			'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category_id' => [
                 'required',
                 Rule::exists('categories', 'id'),
             ],
         ]);
 
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($product->image); // Elimina la imagen anterior
+            $imagePath = $request->file('image')->store('products', 'public');
+        } else {
+            $imagePath = $product->image; // Conserva la imagen anterior si no se actualiza
+        }
+
         $product->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
             'stock' => $request->input('stock'),
+            'image' => $imagePath,
             'category_id' => $request->input('category_id'),
         ]);
 
-        return redirect()->route('products.index');
+        return redirect()->route('Products.index');
     }
 
     public function destroy(Product $product)
     {
+        Storage::disk('public')->delete($product->image); // Elimina la imagen asociada al producto
         $product->delete();
 
-        return redirect()->route('products.index');
+        return redirect()->route('Products.index');
     }
 }
